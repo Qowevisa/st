@@ -1,0 +1,14 @@
+## anysize
+
+#x.c
+borderpx changed to either win.vborderpx or win.hborderpx
+
+## oneclip-board
+
+#config
+selpaste changed to clippaste
+
+#x.c
+in void setsel()
++ clipcopy(NULL);
+
