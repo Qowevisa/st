@@ -5,8 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrainsMono Nerd Font :pixelsize=15:antialias=true:autohint=true";
-static char *font2[] = { "JetBrainsMono Nerd Font :pixelsize=15:antialias=true:autohint=true" };
+// static char *font = "JetBrainsMono Nerd Font :pixelsize=15:antialias=true:autohint=true";
+// static char *font = "DraftingMono-SemiBold :pixelsize=15:antialias=true:autohint=true";
+static char *font = "Bitstream Vera Sans Mono:style=Regular:size=15";
+// static char *font2[] = { "JetBrainsMono Nerd Font :pixelsize=15:antialias=true:autohint=true" };
+// static char *font2[] = { "DraftingMono-SemiBold :pixelsize=15:antialias=true:autohint=true" };
+static char *font2[] = { "Bitstream Vera Sans Mono:style=Regular:size=15" };
 static int borderpx = 0;
 
 /*
@@ -114,7 +118,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 1.0;
+float alpha = 0.8;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
