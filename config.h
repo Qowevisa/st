@@ -148,7 +148,7 @@ char *colorname[] = {
 
 unsigned int ptind = 0;
 #define ptlen 20
-#define ptcount 2
+#define ptcount 3
 
 char *colorpalettes[ptcount][ptlen] = {
     // Default color palette that will be used at the start
@@ -195,6 +195,29 @@ char *colorpalettes[ptcount][ptlen] = {
         "#93a1a1",
         "#444444",
         "#1b1b1c",
+        "#eeeee8"
+    },
+    // Sweet theme
+    {
+        "#6e6c7e",
+        "#e57f94",
+        "#76c379",
+        "#d7b167",
+        "#6fa7d8",
+        "#d78ebd",
+        "#6dc1d6",
+        "#adb8cc",
+        "#998ca1", //
+        "#fa9cab", 
+        "#a8dfaf",
+        "#fde2ad",
+        "#91cafc",
+        "#f7c9e8",
+        "#80d6ed",
+        "#dae1ef",
+        "#93a1a1",
+        "#444444",
+        "#1e1e2e",
         "#eeeee8"
     }
 };
@@ -349,8 +372,8 @@ static Shortcut shortcuts[] = {
   { MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
   { MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
   { TERMMOD,              XK_Return,      newterm,        {.i =  0} },
-  { ControlMask | ShiftMask,    XK_less,    changecolorpalette,      {.i = +1} },
-  { ControlMask | ShiftMask,    XK_greater, changecolorpalette,      {.i = -1} },
+  { ControlMask | ShiftMask,    XK_less,    changecolorpalette,      {.i = -1} },
+  { ControlMask | ShiftMask,    XK_greater, changecolorpalette,      {.i = +1} },
 };
 
 /*

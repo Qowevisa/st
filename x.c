@@ -279,25 +279,21 @@ initcolorpalette(void)
 void
 changecolorpalette(const Arg *arg)
 {
-        ptind += arg->i;
-        if (ptind < 0) {
-            ptind += ptcount;
-        } else {
-            ptind %= ptcount;
-        }
+    ptind += arg->i + ptcount;
+    ptind %= ptcount;
 
-        int k = 0;
-        for (int i = 0; i < 16; i++) {
-            colorname[i] = colorpalettes[ptind][k++];
-        }
-        for (int i = 256; i < 260; i++) {
-            colorname[i] = colorpalettes[ptind][k++];
-        }
+    int k = 0;
+    for (int i = 0; i < 16; i++) {
+        colorname[i] = colorpalettes[ptind][k++];
+    }
+    for (int i = 256; i < 260; i++) {
+        colorname[i] = colorpalettes[ptind][k++];
+    }
 
-        if (arg->i != 0) {
-            xloadcols();
-            redraw();
-        }
+    if (arg->i != 0) {
+        xloadcols();
+        redraw();
+    }
 }
 
 void
