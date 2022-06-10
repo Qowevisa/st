@@ -269,7 +269,7 @@ static int oldbutton = 3; /* button event on startup: 3 = release */
 static int cursorblinks = 0;
 
 void
-init_color_palette(void)
+initcolorpalette(void)
 {
     Arg arg;
     arg.i = 0;
@@ -288,10 +288,10 @@ changecolorpalette(const Arg *arg)
 
         int k = 0;
         for (int i = 0; i < 16; i++) {
-            colorname[i] = color_palettes[ptind][k++];
+            colorname[i] = colorpalettes[ptind][k++];
         }
         for (int i = 256; i < 260; i++) {
-            colorname[i] = color_palettes[ptind][k++];
+            colorname[i] = colorpalettes[ptind][k++];
         }
 
         if (arg->i != 0) {
@@ -2352,7 +2352,7 @@ usage(void)
 int
 main(int argc, char *argv[])
 {
-    init_color_palette();
+    initcolorpalette();
     xw.l = xw.t = 0;
     xw.isfixed = False;
     xsetcursor(cursorshape);
