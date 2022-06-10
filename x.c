@@ -69,6 +69,7 @@ static void clippaste(const Arg *);
 static void numlock(const Arg *);
 static void selpaste(const Arg *);
 static void changealpha(const Arg *);
+static void changecolorpalette(const Arg *);
 static void zoom(const Arg *);
 static void zoomabs(const Arg *);
 static void zoomreset(const Arg *);
@@ -266,6 +267,41 @@ static char *opt_title = NULL;
 
 static int oldbutton = 3; /* button event on startup: 3 = release */
 static int cursorblinks = 0;
+
+void
+changecolorpalette(const Arg *arg)
+{
+        palette_ind += arg->i;
+        if (palette_ind < 0) {
+            palette_ind += palette_len;
+        } else {
+            palette_ind %= palette_len;
+        }
+        colorname[0] = color_palettes[palette_ind][0];
+        colorname[1] = color_palettes[palette_ind][1];
+        colorname[2] = color_palettes[palette_ind][2];
+        colorname[3] = color_palettes[palette_ind][3];
+        colorname[4] = color_palettes[palette_ind][4];
+        colorname[5] = color_palettes[palette_ind][5];
+        colorname[6] = color_palettes[palette_ind][6];
+        colorname[7] = color_palettes[palette_ind][7];
+        colorname[8] = color_palettes[palette_ind][8];
+        colorname[9] = color_palettes[palette_ind][9];
+        colorname[10] = color_palettes[palette_ind][10];
+        colorname[11] = color_palettes[palette_ind][11];
+        colorname[12] = color_palettes[palette_ind][12];
+        colorname[13] = color_palettes[palette_ind][13];
+        colorname[14] = color_palettes[palette_ind][14];
+        colorname[15] = color_palettes[palette_ind][15];
+        colorname[256] = color_palettes[palette_ind][16];
+        colorname[257] = color_palettes[palette_ind][17];
+        colorname[258] = color_palettes[palette_ind][18];
+        colorname[259] = color_palettes[palette_ind][19];
+        
+        printf("%d\n", palette_len_debug);
+        xloadcols();
+        redraw();
+}
 
 void
 clipcopy(const Arg *dummy)

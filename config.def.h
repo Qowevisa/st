@@ -121,31 +121,83 @@ unsigned int tabspaces = 8;
 float alpha = 0.8;
 
 /* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = {
-  "#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
-  "#cc241d",
-  "#98971a",
-  "#d79921",
-  "#458588",
-  "#b16286",
-  "#689d6a",
-  "#a89984",
-  "#928374",
-  "#fb4934",
-  "#b8bb26",
-  "#fabd2f",
-  "#83a598",
-  "#d3869b",
-  "#8ec07c",
-  "#ebdbb2",
-  [255] = 0,
-  /* more colors can be added after 255 to use with DefaultXX */
-  "#add8e6", /* 256 -> cursor */
-  "#555555", /* 257 -> rev cursor*/
-  "#282828", /* 258 -> bg */
-  "#ffffff", /* 259 -> fg */
+char *colorname[] = {
+    "#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
+    "#cc241d",
+    "#98971a",
+    "#d79921",
+    "#458588",
+    "#b16286",
+    "#689d6a",
+    "#a89984",
+    "#928374",
+    "#fb4934",
+    "#b8bb26",
+    "#fabd2f",
+    "#83a598",
+    "#d3869b",
+    "#8ec07c",
+    "#ebdbb2",
+    [255] = 0,
+    /* more colors can be added after 255 to use with DefaultXX */
+    "#add8e6", /* 256 -> cursor */
+    "#555555", /* 257 -> rev cursor*/
+    "#282828", /* 258 -> bg */
+    "#ffffff", /* 259 -> fg */
 };
 
+char *color_palettes[2][20] = {
+    // Current color palette that constructed as a pointers not to have a seg fault.
+    {
+        "#282828",
+        "#cc241d",
+        "#98971a",
+        "#d79921",
+        "#458588",
+        "#b16286",
+        "#689d6a",
+        "#a89984",
+        "#928374",
+        "#fb4934",
+        "#b8bb26",
+        "#fabd2f",
+        "#83a598",
+        "#d3869b",
+        "#8ec07c",
+        "#ebdbb2",
+        "#add8e6", /* 256 -> cursor */
+        "#555555", /* 257 -> rev cursor*/
+        "#282828", /* 258 -> bg */
+        "#ffffff", /* 259 -> fg */
+    },
+    // Add another color palette as demonstrated below
+    {
+        "#1d2021",
+        "#ffffff",
+        "#1e1e1e",
+        "#1d1d1d",
+        "#222222",
+        "#555555",
+        "#eeeeee",
+        "#ff0000",
+        "#00ff00",
+        "#0000ff",
+        "#aa0000",
+        "#00aa00",
+        "#0000aa",
+        "#777700",
+        "#007777",
+        "#770077",
+        "#e2e2e2",
+        "#2e2e2e",
+        "#232627",
+        "#2a2e32"
+    }
+};
+
+unsigned int palette_ind = 0;
+unsigned int palette_len = 2;
+unsigned int palette_len_debug = sizeof(color_palettes) / sizeof(char**);
 
 /*
  * Default colors (colorname index)
@@ -169,7 +221,7 @@ unsigned int defaultrcs = 257;
  * 7: Blinking st cursor
  * 8: Steady st cursor
  */
-static unsigned int cursorshape = 1;
+static unsigned int cursorshape = 0;
 
 /*
  * Default columns and rows numbers
@@ -297,7 +349,8 @@ static Shortcut shortcuts[] = {
   { MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
   { MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
   { TERMMOD,              XK_Return,      newterm,        {.i =  0} },
-
+  { ControlMask | ShiftMask,    XK_less,    changecolorpalette,      {.i = +1} },
+  { ControlMask | ShiftMask,    XK_greater, changecolorpalette,      {.i = -1} },
 };
 
 /*
