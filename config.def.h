@@ -122,32 +122,36 @@ float alpha = 0.8;
 
 /* Terminal colors (16 first used in escape sequence) */
 char *colorname[] = {
-    "#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
-    "#cc241d",
-    "#98971a",
-    "#d79921",
-    "#458588",
-    "#b16286",
-    "#689d6a",
-    "#a89984",
-    "#928374",
-    "#fb4934",
-    "#b8bb26",
-    "#fabd2f",
-    "#83a598",
-    "#d3869b",
-    "#8ec07c",
-    "#ebdbb2",
+    NULL, /* hard contrast: #1d2021 / soft contrast: #32302f */
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
     [255] = 0,
     /* more colors can be added after 255 to use with DefaultXX */
-    "#add8e6", /* 256 -> cursor */
-    "#555555", /* 257 -> rev cursor*/
-    "#282828", /* 258 -> bg */
-    "#ffffff", /* 259 -> fg */
+    NULL, /* 256 -> cursor */
+    NULL, /* 257 -> rev cursor*/
+    NULL, /* 258 -> bg */
+    NULL, /* 259 -> fg */
 };
 
-char *color_palettes[2][20] = {
-    // Current color palette that constructed as a pointers not to have a seg fault.
+unsigned int ptind = 0;
+#define ptlen 20
+#define ptcount 2
+
+char *color_palettes[ptcount][ptlen] = {
+    // Default color palette that will be used at the start
     {
         "#282828",
         "#cc241d",
@@ -172,32 +176,28 @@ char *color_palettes[2][20] = {
     },
     // Add another color palette as demonstrated below
     {
-        "#1d2021",
-        "#ffffff",
-        "#1e1e1e",
-        "#1d1d1d",
-        "#222222",
-        "#555555",
-        "#eeeeee",
-        "#ff0000",
-        "#00ff00",
-        "#0000ff",
-        "#aa0000",
-        "#00aa00",
-        "#0000aa",
-        "#777700",
-        "#007777",
-        "#770077",
-        "#e2e2e2",
-        "#2e2e2e",
-        "#232627",
-        "#2a2e32"
+        "#383b4a",
+        "#ca3d6b",
+        "#588e5a",
+        "#f68b3d",
+        "#2b8cd1",
+        "#d13682",
+        "#29a097",
+        "#eee7d4",
+        "#3f4551",
+        "#e37b72",
+        "#89cb9b",
+        "#d6d65a",
+        "#5d89a6",
+        "#9c5978",
+        "#6baca8",
+        "#888888",
+        "#93a1a1",
+        "#444444",
+        "#1b1b1c",
+        "#eeeee8"
     }
 };
-
-unsigned int palette_ind = 0;
-unsigned int palette_len = 2;
-unsigned int palette_len_debug = sizeof(color_palettes) / sizeof(char**);
 
 /*
  * Default colors (colorname index)
