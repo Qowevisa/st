@@ -146,7 +146,7 @@ char *colorname[] = {
     NULL, /* 259 -> fg */
 };
 
-unsigned int ptind = 0;
+unsigned int ptind = 1;
 #define ptlen 20
 #define ptcount 3
 
